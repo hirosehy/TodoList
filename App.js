@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, ScrollView, StyleSheet } from 'react-native'
-import Header from './src/components/Header/Header'
-import List from './src/components/List/List'
+import Header from './src/components/Organisms/Header'
+import List from './src/components/Organisms/TodoList'
 
 export default function App () {
   return (

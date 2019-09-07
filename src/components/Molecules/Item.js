@@ -11,8 +11,8 @@ export default class Item extends Component {
   render () {
     return (
       <View style={styles.container}>
-        <Icon name='plus' style={styles.icon} />
-        <Text style={styles.taskText}>{this.state.adding ? 'aaa' : 'bbb'}</Text>
+        <Icon name={this.state.adding ? 'plus' : 'plus'} style={styles.icon} />
+        <Text style={styles.taskText}>{this.state.adding ? 'plus' : 'checkbox-passive'}fewfew</Text>
       </View>
     )
   }
