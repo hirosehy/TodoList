@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
+import AtomInputText from '../Atoms/AtomInputText'
 import Icon from 'react-native-vector-icons/FontAwesome'
 
 export default class Item extends Component {
@@ -11,8 +12,8 @@ export default class Item extends Component {
   render () {
     return (
       <View style={styles.container}>
-        <Icon name={this.state.adding ? 'plus' : 'plus'} style={styles.icon} />
-        <Text style={styles.taskText}>{this.state.adding ? 'plus' : 'checkbox-passive'}fewfew</Text>
+        <Icon name={this.state.adding ? 'plus' : 'eye'} style={styles.icon} />
+        <AtomInputText />
       </View>
     )
   }
@@ -29,8 +30,9 @@ const styles = StyleSheet.create({
   },
   icon: {
     color: '#4873ff',
-    fontSize: 28,
-    marginRight: 16
+    fontSize: 26,
+    marginRight: 16,
+    width: 28
   },
   taskText: {
     fontSize: 24
