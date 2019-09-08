@@ -1,18 +1,19 @@
 import React, { Component } from 'react'
-import { View, StyleSheet, Alert } from 'react-native'
+import { View, StyleSheet } from 'react-native'
 import AtomInputText from '../Atoms/AtomInputText'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import { setAdding } from '../../../redux/actions'
 import { connect } from 'react-redux'
+import { CheckBox } from 'react-native-elements'
 
 class Item extends Component {
   constructor (props) {
     super(props)
-    this.state = { adding: false }
+    this.state = { adding: false, todoChecked: false }
   }
 
-  state = {
-    adding: this.props.adding
+  checkboxPress = () => {
+    this.setState(() => ({ todoChecked: !this.state.todoChecked }))
   }
 
   render () {
@@ -22,9 +23,15 @@ class Item extends Component {
       onAdding(!adding)
     }
 
+    const TodoIcon = () => {
+      return adding
+        ? <CheckBox onPress={this.checkboxPress} checked={this.state.todoChecked} />
+        : <Icon name={adding ? 'eye' : 'plus'} style={styles.icon} onPress={changeAdding} />
+    }
+
     return (
       <View style={styles.container}>
-        <Icon name={adding ? 'eye' : 'plus'} style={styles.icon} onPress={changeAdding} />
+        <TodoIcon />
         <AtomInputText />
       </View>
     )
