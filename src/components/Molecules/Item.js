@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { View, StyleSheet } from 'react-native'
 import AtomInputText from '../Atoms/AtomInputText'
 import Icon from 'react-native-vector-icons/FontAwesome'
-import { setAdding } from '../../../redux/actions'
+import { setAdding, setEditing } from '../../../redux/actions'
 import { connect } from 'react-redux'
 import { CheckBox } from 'react-native-elements'
 
@@ -17,14 +17,14 @@ class Item extends Component {
   }
 
   render () {
-    const { adding, onAdding } = this.props
+    const { adding, editing, onAdding } = this.props
 
     const changeAdding = () => {
       onAdding(!adding)
     }
 
     const TodoIcon = () => {
-      return adding
+      return adding || editing
         ? <CheckBox onPress={this.checkboxPress} checked={this.state.todoChecked} />
         : <Icon name={adding ? 'eye' : 'plus'} style={styles.icon} onPress={changeAdding} />
     }
@@ -40,7 +40,8 @@ class Item extends Component {
 
 const mapStateToProps = state => {
   return {
-    adding: state.todos.adding
+    adding: state.todos.adding,
+    editing: state.todos.editing
   }
 }
 
@@ -48,6 +49,9 @@ const mapDispatchToProps = dispatch => {
   return {
     onAdding: adding => {
       return dispatch(setAdding(adding))
+    },
+    onEditing: editing => {
+      return dispatch(setEditing(editing))
     }
   }
 }

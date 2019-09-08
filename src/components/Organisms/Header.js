@@ -1,24 +1,32 @@
 import React, { Component } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import { connect } from 'react-redux'
-import { setAdding } from '../../../redux/actions'
+import { setAdding, setEditing } from '../../../redux/actions'
 
 class Header extends Component {
   state = {
-    adding: this.props.adding
+    adding: this.props.adding,
+    editing: this.props.editing
   }
 
   render () {
-    const { adding, onAdding } = this.props
+    const { adding, editing, onAdding, onEditing } = this.props
 
     const changeAdding = () => {
       onAdding(!adding)
     }
 
+    const changeEditing = () => {
+      onEditing(!editing)
+    }
+
     const ListOperation = () => {
-      return adding
-        ? <Text style={styles.headerRight} onPress={changeAdding}>追加</Text>
-        : <Text style={styles.headerRight}>削除</Text>
+      if (adding && !editing) {
+        return <Text style={styles.headerRight} onPress={changeAdding}>追加</Text>
+      } else if (!adding && editing) {
+        return <Text style={styles.headerRight} onPress={changeEditing}>完了</Text>
+      }
+      return <Text style={styles.headerRight}>削除</Text>
     }
 
     return (
@@ -33,7 +41,8 @@ class Header extends Component {
 
 const mapStateToProps = state => {
   return {
-    adding: state.todos.adding
+    adding: state.todos.adding,
+    editing: state.todos.editing
   }
 }
 
@@ -41,6 +50,9 @@ const mapDispatchToProps = dispatch => {
   return {
     onAdding: adding => {
       return dispatch(setAdding(adding))
+    },
+    onEditing: editing => {
+      return dispatch(setEditing(editing))
     }
   }
 }
