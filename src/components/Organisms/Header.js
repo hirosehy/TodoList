@@ -11,10 +11,13 @@ class Header extends Component {
   render () {
     const { adding, onAdding } = this.props
 
+    const changeAdding = () => {
+      onAdding(!adding)
+    }
+
     const ListOperation = () => {
-      // onAdding(true)
       return adding
-        ? <Text style={styles.headerRight}>追加</Text>
+        ? <Text style={styles.headerRight} onPress={changeAdding}>追加</Text>
         : <Text style={styles.headerRight}>削除</Text>
     }
 
