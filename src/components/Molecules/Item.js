@@ -1,23 +1,51 @@
 import React, { Component } from 'react'
-import { View, StyleSheet } from 'react-native'
+import { View, StyleSheet, Alert } from 'react-native'
 import AtomInputText from '../Atoms/AtomInputText'
 import Icon from 'react-native-vector-icons/FontAwesome'
+import { setAdding } from '../../../redux/actions'
+import { connect } from 'react-redux'
 
-export default class Item extends Component {
+class Item extends Component {
   constructor (props) {
     super(props)
     this.state = { adding: false }
   }
 
+  state = {
+    adding: this.props.adding
+  }
+
   render () {
+    const { adding, onAdding } = this.props
+
+    const changeAdding = () => {
+      onAdding(!adding)
+    }
+
     return (
       <View style={styles.container}>
-        <Icon name={this.state.adding ? 'plus' : 'eye'} style={styles.icon} />
+        <Icon name={adding ? 'eye' : 'plus'} style={styles.icon} onPress={changeAdding} />
         <AtomInputText />
       </View>
     )
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    adding: state.todos.adding
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onAdding: adding => {
+      return dispatch(setAdding(adding))
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Item)
 
 const styles = StyleSheet.create({
   container: {

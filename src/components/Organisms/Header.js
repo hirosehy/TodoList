@@ -8,9 +8,6 @@ class Header extends Component {
     adding: this.props.adding
   }
 
-  componentDidMount () {
-  }
-
   render () {
     const { adding, onAdding } = this.props
 
