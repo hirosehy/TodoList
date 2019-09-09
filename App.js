@@ -1,17 +1,23 @@
 import React from 'react'
-import { View, ScrollView, StyleSheet } from 'react-native'
+import { ScrollView, StyleSheet } from 'react-native'
 import Header from './src/components/Organisms/Header'
 import List from './src/components/Organisms/TodoList'
 import { Provider } from 'react-redux'
-import { store } from './redux/store'
+
+import { PersistGate } from 'redux-persist/integration/react'
+import createStore from './redux/store'
+
+const { store, persistor } = createStore()
 
 export default function App () {
   return (
     <Provider store={store} style={styles.container}>
-      <Header />
-      <ScrollView>
-        <List />
-      </ScrollView>
+      <PersistGate loading={null} persistor={persistor}>
+        <Header />
+        <ScrollView>
+          <List />
+        </ScrollView>
+      </PersistGate>
     </Provider>
   )
 }
