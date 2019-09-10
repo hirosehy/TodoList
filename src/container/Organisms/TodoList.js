@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { View } from 'react-native'
-import Item from '../Molecules/Item'
+import Item from '../../components/Molecules/Item'
 import { connect } from 'react-redux'
 
 class List extends Component {
