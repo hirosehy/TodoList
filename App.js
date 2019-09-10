@@ -1,7 +1,7 @@
 import React from 'react'
 import { ScrollView, StyleSheet } from 'react-native'
-import Header from './src/components/container/Organisms/Header'
-import List from './src/components/container/Organisms/TodoList'
+import Header from './src//container/Organisms/Header'
+import List from './src/container/Organisms/TodoList'
 import { Provider } from 'react-redux'
 
 import { PersistGate } from 'redux-persist/integration/react'
