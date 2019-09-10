@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { TextInput, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
-import { setEditing } from '../../../redux/actions'
+import { setEditing } from '../../actions'
 
 class AtomInputText extends Component {
   state = {

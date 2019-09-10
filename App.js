@@ -5,7 +5,7 @@ import List from './src/components/Organisms/TodoList'
 import { Provider } from 'react-redux'
 
 import { PersistGate } from 'redux-persist/integration/react'
-import createStore from './redux/store'
+import createStore from './src/store'
 
 const { store, persistor } = createStore()
 

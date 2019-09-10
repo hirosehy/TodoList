@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text } from 'react-native'
+import { View } from 'react-native'
 import Item from '../Molecules/Item'
 import { connect } from 'react-redux'
 
@@ -22,8 +22,5 @@ const mapStateToProps = state => {
     todos: state.todos.todos
   }
 }
-
-// const mapDispatchToProps = dispatch => {
-// }
 
 export default connect(mapStateToProps)(List)

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { View, StyleSheet } from 'react-native'
 import AtomInputText from '../Atoms/AtomInputText'
 import Icon from 'react-native-vector-icons/FontAwesome'
-import { setAdding, setEditing } from '../../../redux/actions'
+import { setAdding, setEditing } from '../../actions'
 import { connect } from 'react-redux'
 import { CheckBox } from 'react-native-elements'
 
