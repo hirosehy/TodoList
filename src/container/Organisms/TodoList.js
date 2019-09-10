@@ -10,6 +10,7 @@ class List extends Component {
         {this.props.todos.todos.map((data, index) => {
           return <Item todos={data} adding={false} key={index} />
         })}
+        <Item adding key='adding' />
       </View>
     )
   }

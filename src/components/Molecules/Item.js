@@ -7,7 +7,10 @@ import { CheckBox } from 'react-native-elements'
 export default class Item extends Component {
   constructor (props) {
     super(props)
-    this.state = { done: this.props.todos.done }
+    this.state = {
+      done: this.props.todos ? this.props.todos.done : undefined,
+      content: this.props.content ? this.props.todos.content : ''
+    }
   }
 
   checkboxPress = () => {
@@ -28,7 +31,7 @@ export default class Item extends Component {
     return (
       <View style={styles.container}>
         {TodoIcon(this.props.adding)}
-        <AtomInputText value={this.props.todos.content} />
+        <AtomInputText value={this.state.content} />
       </View>
     )
   }

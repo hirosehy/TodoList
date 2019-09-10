@@ -7,7 +7,7 @@ import {
 const initialState = {
   adding: false,
   editing: false,
-  list: [{ 'content': 'test', done: true }, { 'content': 'test2', done: false }]
+  list: [{ 'content': 'test', done: true }, { 'content': 'test2', done: false }, { 'content': 'test3', done: false }]
 }
 
 export default (state = initialState, action) => {
