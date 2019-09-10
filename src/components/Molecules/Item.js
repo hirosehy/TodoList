@@ -2,61 +2,37 @@ import React, { Component } from 'react'
 import { View, StyleSheet } from 'react-native'
 import AtomInputText from '../Atoms/AtomInputText'
 import Icon from 'react-native-vector-icons/FontAwesome'
-import { setAdding, setEditing } from '../../actions'
-import { connect } from 'react-redux'
 import { CheckBox } from 'react-native-elements'
 
-class Item extends Component {
+export default class Item extends Component {
   constructor (props) {
     super(props)
-    this.state = { adding: false, todoChecked: false }
+    this.state = { done: this.props.todos.done }
   }
 
   checkboxPress = () => {
-    this.setState(() => ({ todoChecked: !this.state.todoChecked }))
+    this.setState(() => ({ done: !this.state.done }))
   }
 
   render () {
-    const { adding, editing, onAdding } = this.props
-
     const changeAdding = () => {
-      onAdding(!adding)
+      console.log('emitする')
     }
 
-    const TodoIcon = () => {
-      return adding || editing
-        ? <CheckBox onPress={this.checkboxPress} checked={this.state.todoChecked} />
-        : <Icon name={adding ? 'eye' : 'plus'} style={styles.icon} onPress={changeAdding} />
+    const TodoIcon = (adding) => {
+      return adding
+        ? <Icon name='plus' style={styles.icon} onPress={changeAdding} />
+        : <CheckBox onPress={this.checkboxPress} checked={this.state.done} />
     }
 
     return (
       <View style={styles.container}>
-        <TodoIcon />
+        {TodoIcon(this.props.adding)}
         <AtomInputText value={this.props.todos.content} />
       </View>
     )
   }
 }
-
-const mapStateToProps = state => {
-  return {
-    adding: state.todos.adding,
-    editing: state.todos.editing
-  }
-}
-
-const mapDispatchToProps = dispatch => {
-  return {
-    onAdding: adding => {
-      return dispatch(setAdding(adding))
-    },
-    onEditing: editing => {
-      return dispatch(setEditing(editing))
-    }
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Item)
 
 const styles = StyleSheet.create({
   container: {
