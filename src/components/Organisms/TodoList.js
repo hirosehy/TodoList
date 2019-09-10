@@ -9,8 +9,8 @@ class List extends Component {
 
     return (
       <View>
-        {todos.map((data) => {
-          return <Item value={data.content} />
+        {todos.map((data, index) => {
+          return <Item value={data.content} key={index} />
         })}
       </View>
     )
