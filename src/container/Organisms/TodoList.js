@@ -10,7 +10,7 @@ class List extends Component {
     return (
       <View>
         {todos.map((data, index) => {
-          return <Item value={data.content} key={index} />
+          return <Item todos={data} key={index} />
         })}
       </View>
     )

@@ -32,7 +32,7 @@ class Item extends Component {
     return (
       <View style={styles.container}>
         <TodoIcon />
-        <AtomInputText value={this.props.value} />
+        <AtomInputText value={this.props.todos.content} />
       </View>
     )
   }
