@@ -1,16 +1,14 @@
 import React, { Component } from 'react'
-import { View } from 'react-native'
+import { View, Text } from 'react-native'
 import Item from '../../components/Molecules/Item'
 import { connect } from 'react-redux'
 
 class List extends Component {
   render () {
-    const { todos } = this.props
-
     return (
       <View>
-        {todos.map((data, index) => {
-          return <Item todos={data} key={index} />
+        {this.props.todos.todos.map((data, index) => {
+          return <Item todos={data} adding={false} key={index} />
         })}
       </View>
     )
@@ -19,7 +17,7 @@ class List extends Component {
 
 const mapStateToProps = state => {
   return {
-    todos: state.todos.todos
+    todos: state.todos
   }
 }
 
