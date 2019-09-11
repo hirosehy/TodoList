@@ -8,6 +8,7 @@ class Header extends Component {
     const { adding, editing, todos, onAdding, onEditing, onSetTodos } = this.props
 
     const changeAdding = () => {
+      this.props.submitAdding(!adding)
       onAdding(!adding)
     }
 
@@ -53,7 +54,7 @@ const mapDispatchToProps = dispatch => {
       return dispatch(setEditing(editing))
     },
     onSetTodos: todos => {
-      // return dispatch(setTodos(todos))
+      return dispatch(setTodos(todos))
     }
   }
 }

@@ -7,6 +7,7 @@ export default class AtomInputText extends Component {
   }
 
   _handleTextChange = inputValue => {
+    this.props.handleTextChange(inputValue)
     this.setState({ inputValue })
   }
 

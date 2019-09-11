@@ -16,12 +16,16 @@ class List extends Component {
       onAdding(adding)
     }
 
+    const handleTextChange = (text, adding) => {
+      this.props.addTodo(text, adding)
+    }
+
     return (
       <View>
-        {this.props.todos.list.map((data, index) => {
+        {todos.list.map((data, index) => {
           return <Item todo={data} adding={false} index={index} key={index} checked={checked} />
         })}
-        <Item adding key='adding' changeAdding={changeAdding} />
+        <Item adding key='adding' changeAdding={changeAdding} handleTextChange={handleTextChange} />
       </View>
     )
   }

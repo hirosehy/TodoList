@@ -19,6 +19,10 @@ export default class Item extends Component {
     this.setState(() => ({ done: !this.state.done }))
   }
 
+  handleTextChange = (text) => {
+    this.props.handleTextChange(text, this.props.adding)
+  }
+
   handleFocus = () => {
     this.props.changeAdding()
     this.setState(() => ({ editing: !this.state.editing }))
@@ -47,6 +51,7 @@ export default class Item extends Component {
           value={this.state.content}
           handleFocus={this.handleFocus}
           handleBlur={this.handleBlur}
+          handleTextChange={this.handleTextChange}
         />
       </View>
     )
