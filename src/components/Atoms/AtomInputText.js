@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
 import { TextInput, StyleSheet } from 'react-native'
-import { connect } from 'react-redux'
-import { setEditing } from '../../actions'
 
-class AtomInputText extends Component {
+export default class AtomInputText extends Component {
   state = {
     inputValue: this.props.value ? this.props.value : ''
   }
@@ -13,8 +11,6 @@ class AtomInputText extends Component {
   }
 
   render () {
-    const { editing, onEditing } = this.props
-
     return (
       <TextInput
         style={styles.textInput}
@@ -27,22 +23,6 @@ class AtomInputText extends Component {
     )
   }
 }
-
-const mapStateToProps = state => {
-  return {
-    adding: state.todos.editing
-  }
-}
-
-const mapDispatchToProps = dispatch => {
-  return {
-    onEditing: editing => {
-      return dispatch(setEditing(editing))
-    }
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(AtomInputText)
 
 const styles = StyleSheet.create({
   textInput: {
