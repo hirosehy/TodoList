@@ -7,9 +7,10 @@ import { CheckBox } from 'react-native-elements'
 export default class Item extends Component {
   constructor (props) {
     super(props)
+    console.log(this.props)
     this.state = {
-      done: this.props.todos ? this.props.todos.done : undefined,
-      content: this.props.content ? this.props.todos.content : '',
+      done: this.props.todo ? this.props.todo.done : undefined,
+      content: this.props.todo ? this.props.todo.content : '',
       editing: false
     }
   }
@@ -20,7 +21,6 @@ export default class Item extends Component {
 
   handleEditing = () => {
     this.setState(() => ({ editing: !this.state.editing }))
-    console.log(this.state.editing)
   }
 
   render () {

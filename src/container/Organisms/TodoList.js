@@ -7,8 +7,8 @@ class List extends Component {
   render () {
     return (
       <View>
-        {this.props.todos.todos.map((data, index) => {
-          return <Item todos={data} adding={false} key={index} />
+        {this.props.todos.list.map((data, index) => {
+          return <Item todo={data} adding={false} key={index} />
         })}
         <Item adding key='adding' />
       </View>
