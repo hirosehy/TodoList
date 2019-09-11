@@ -20,10 +20,12 @@ export default class Item extends Component {
   }
 
   handleFocus = () => {
+    this.props.changeAdding()
     this.setState(() => ({ editing: !this.state.editing }))
   }
 
   handleBlur = () => {
+    this.props.changeAdding()
     this.setState(() => ({ editing: !this.state.editing }))
   }
 

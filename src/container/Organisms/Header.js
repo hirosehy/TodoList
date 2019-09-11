@@ -4,11 +4,6 @@ import { connect } from 'react-redux'
 import { setAdding, setEditing, setTodos } from '../../actions/index'
 
 class Header extends Component {
-  state = {
-    adding: this.props.adding,
-    editing: this.props.editing
-  }
-
   render () {
     const { adding, editing, todos, onAdding, onEditing, onSetTodos } = this.props
 
@@ -27,8 +22,6 @@ class Header extends Component {
     const ListOperation = () => {
       if (adding && !editing) {
         return <Text style={styles.headerRight} onPress={changeAdding}>追加</Text>
-      } else if (!adding && editing) {
-        return <Text style={styles.headerRight} onPress={changeEditing}>完了</Text>
       }
       return <Text style={styles.headerRight} onPress={deleteTodos}>削除</Text>
     }

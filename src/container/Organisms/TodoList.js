@@ -2,14 +2,18 @@ import React, { Component } from 'react'
 import { View } from 'react-native'
 import Item from '../../components/Molecules/Item'
 import { connect } from 'react-redux'
-import { setTodos } from '../../actions/index'
+import { setAdding, setTodos } from '../../actions/index'
 
 class List extends Component {
   render () {
-    const { todos, onSetTodos } = this.props
+    const { todos, adding, onAdding, onSetTodos } = this.props
     const checked = (index) => {
       todos.list[index].done = !todos.list[index].done
       onSetTodos(todos.list)
+    }
+
+    const changeAdding = () => {
+      onAdding(adding)
     }
 
     return (
@@ -17,7 +21,7 @@ class List extends Component {
         {this.props.todos.list.map((data, index) => {
           return <Item todo={data} adding={false} index={index} key={index} checked={checked} />
         })}
-        <Item adding key='adding' />
+        <Item adding key='adding' changeAdding={changeAdding} />
       </View>
     )
   }
@@ -25,14 +29,17 @@ class List extends Component {
 
 const mapStateToProps = state => {
   return {
-    todos: state.todos
+    todos: state.todos,
+    adding: state.todos.adding
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
+    onAdding: adding => {
+      return dispatch(setAdding(!adding))
+    },
     onSetTodos: todos => {
-      console.log(todos)
       // return dispatch(setTodos(todos))
     }
   }
