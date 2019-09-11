@@ -7,7 +7,6 @@ import { CheckBox } from 'react-native-elements'
 export default class Item extends Component {
   constructor (props) {
     super(props)
-    console.log(this.props)
     this.state = {
       done: this.props.todo ? this.props.todo.done : undefined,
       content: this.props.todo ? this.props.todo.content : '',

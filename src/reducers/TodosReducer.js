@@ -1,7 +1,8 @@
 import {
   TODO_ADDING,
   TODO_EDITING,
-  ADD_TODO
+  ADD_TODO,
+  SET_TODOS
 } from '../actions/types'
 
 const initialState = {
@@ -19,6 +20,8 @@ export default (state = initialState, action) => {
     case ADD_TODO:
       // ここにステートの変更とかの処理をかくぽいい
       return { ...state, ...initialState, todos: action.todos }
+    case SET_TODOS:
+      return { ...state, ...initialState, list: action.todos }
     default:
       return state
   }

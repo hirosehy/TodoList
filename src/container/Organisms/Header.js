@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import { connect } from 'react-redux'
-import { setAdding, setEditing } from '../../actions/index'
+import { setAdding, setEditing, setTodos } from '../../actions/index'
 
 class Header extends Component {
   state = {
@@ -10,7 +10,7 @@ class Header extends Component {
   }
 
   render () {
-    const { adding, editing, onAdding, onEditing } = this.props
+    const { adding, editing, todos, onAdding, onEditing, onSetTodos } = this.props
 
     const changeAdding = () => {
       onAdding(!adding)
@@ -20,13 +20,17 @@ class Header extends Component {
       onEditing(!editing)
     }
 
+    const deleteTodos = () => {
+      onSetTodos(todos.filter(todo => !todo.done))
+    }
+
     const ListOperation = () => {
       if (adding && !editing) {
         return <Text style={styles.headerRight} onPress={changeAdding}>追加</Text>
       } else if (!adding && editing) {
         return <Text style={styles.headerRight} onPress={changeEditing}>完了</Text>
       }
-      return <Text style={styles.headerRight}>削除</Text>
+      return <Text style={styles.headerRight} onPress={deleteTodos}>削除</Text>
     }
 
     return (
@@ -42,7 +46,8 @@ class Header extends Component {
 const mapStateToProps = state => {
   return {
     adding: state.todos.adding,
-    editing: state.todos.editing
+    editing: state.todos.editing,
+    todos: state.todos.list
   }
 }
 
@@ -53,6 +58,9 @@ const mapDispatchToProps = dispatch => {
     },
     onEditing: editing => {
       return dispatch(setEditing(editing))
+    },
+    onSetTodos: todos => {
+      return dispatch(setTodos(todos))
     }
   }
 }
