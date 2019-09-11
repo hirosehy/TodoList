@@ -16,8 +16,8 @@ export default class AtomInputText extends Component {
         style={styles.textInput}
         onChangeText={text => this._handleTextChange(text)}
         value={this.state.inputValue}
-        onFocus={this.props.handleEditing}
-        onBlur={this.props.handleEditing}
+        onFocus={this.props.handleFocus}
+        onBlur={this.props.handleBlur}
         multiline
       />
     )

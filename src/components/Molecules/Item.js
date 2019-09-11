@@ -19,7 +19,11 @@ export default class Item extends Component {
     this.setState(() => ({ done: !this.state.done }))
   }
 
-  handleEditing = () => {
+  handleFocus = () => {
+    this.setState(() => ({ editing: !this.state.editing }))
+  }
+
+  handleBlur = () => {
     this.setState(() => ({ editing: !this.state.editing }))
   }
 
@@ -37,7 +41,11 @@ export default class Item extends Component {
     return (
       <View style={styles.container}>
         {TodoIcon(this.props.adding)}
-        <AtomInputText value={this.state.content} handleEditing={this.handleEditing} />
+        <AtomInputText
+          value={this.state.content}
+          handleFocus={this.handleFocus}
+          handleBlur={this.handleBlur}
+        />
       </View>
     )
   }
