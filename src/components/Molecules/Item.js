@@ -15,6 +15,7 @@ export default class Item extends Component {
   }
 
   checkboxPress = () => {
+    this.props.checked(this.props.index)
     this.setState(() => ({ done: !this.state.done }))
   }
 

@@ -60,7 +60,7 @@ const mapDispatchToProps = dispatch => {
       return dispatch(setEditing(editing))
     },
     onSetTodos: todos => {
-      return dispatch(setTodos(todos))
+      // return dispatch(setTodos(todos))
     }
   }
 }
