@@ -9,12 +9,18 @@ export default class Item extends Component {
     super(props)
     this.state = {
       done: this.props.todos ? this.props.todos.done : undefined,
-      content: this.props.content ? this.props.todos.content : ''
+      content: this.props.content ? this.props.todos.content : '',
+      editing: false
     }
   }
 
   checkboxPress = () => {
     this.setState(() => ({ done: !this.state.done }))
+  }
+
+  handleEditing = () => {
+    this.setState(() => ({ editing: !this.state.editing }))
+    console.log(this.state.editing)
   }
 
   render () {
@@ -23,7 +29,7 @@ export default class Item extends Component {
     }
 
     const TodoIcon = (adding) => {
-      return adding
+      return adding && !this.state.editing
         ? <Icon name='plus' style={styles.icon} onPress={changeAdding} />
         : <CheckBox onPress={this.checkboxPress} checked={this.state.done} />
     }
@@ -31,7 +37,7 @@ export default class Item extends Component {
     return (
       <View style={styles.container}>
         {TodoIcon(this.props.adding)}
-        <AtomInputText value={this.state.content} />
+        <AtomInputText value={this.state.content} handleEditing={this.handleEditing} />
       </View>
     )
   }

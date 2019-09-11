@@ -15,17 +15,13 @@ class AtomInputText extends Component {
   render () {
     const { editing, onEditing } = this.props
 
-    const changeEditing = () => {
-      onEditing(!editing)
-    }
-
     return (
       <TextInput
         style={styles.textInput}
         onChangeText={text => this._handleTextChange(text)}
         value={this.state.inputValue}
-        onFocus={changeEditing}
-        onBlur={changeEditing}
+        onFocus={this.props.handleEditing}
+        onBlur={this.props.handleEditing}
         multiline
       />
     )
