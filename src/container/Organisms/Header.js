@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from 'react-native'
 
 import { Store } from '../../store'
 
-export default function Header () {
+export default function Header (props) {
   const {
     state,
     dispatch
@@ -18,13 +18,22 @@ export default function Header () {
     dispatch({ type: 'set_todos', todos: todos.list })
   }
 
+  const onAdd = () => {
+    dispatch({
+      type: 'set_todos',
+      todos: todos.list.concat({ content: state.inputValue, done: false })
+    })
+  }
+
   const ListOperation = () => {
-    if (todos.adding && !todos.editing) {
-      return <Text style={styles.headerRight} onPress={(e) => dispatch({ type: 'todo_adding' })}>追加</Text>
-    } else if (!todos.adding && todos.editing) {
-      return <Text style={styles.headerRight}>完了</Text>
-    }
-    return <Text style={styles.headerRight} onPress={deleteTodos}>削除</Text>
+    return <Text style={styles.headerRight} onPress={() => onAdd()}>追加</Text>
+
+    // if (todos.adding && !todos.editing) {
+    //   return <Text style={styles.headerRight} onPress={() => onAdd()}>追加</Text>
+    // } else if (!todos.adding && todos.editing) {
+    //   return <Text style={styles.headerRight}>完了</Text>
+    // }
+    // return <Text style={styles.headerRight} onPress={deleteTodos}>削除</Text>
   }
 
   return (

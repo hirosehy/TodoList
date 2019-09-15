@@ -18,6 +18,7 @@ export default function Item (props) {
   const onAdding = () => {
     setEditing(true)
     addRef.current.focus()
+    props.onAdding()
   }
 
   const TodoIcon = () => {

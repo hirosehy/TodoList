@@ -22,18 +22,17 @@ export default function List (props) {
   // まだcontentに反映されてない
   const handleBlur = () => {
     if (state.adding) {
-      dispatch({ type: 'todo_adding' })
+      dispatch({ type: 'todo_adding', adding: false })
     }
     dispatch({ type: 'todo_editing' })
   }
 
   const onAdding = () => {
-    dispatch({ type: 'todo_adding' })
-    dispatch({ type: 'todo_editing' })
+    dispatch({ type: 'todo_adding', adding: true })
   }
 
   const changeValue = (text) => {
-    props.changeValue(text)
+    dispatch({ type: 'input_value', inputValue: text })
   }
 
   return (
