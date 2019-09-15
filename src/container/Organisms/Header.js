@@ -13,13 +13,18 @@ export default function Header () {
     state
   ])
 
+  const deleteTodos = () => {
+    todos.list = todos.list.filter(todo => !todo.done)
+    dispatch({ type: 'set_todos', todos: todos.list })
+  }
+
   const ListOperation = () => {
     if (todos.adding && !todos.editing) {
       return <Text style={styles.headerRight} onPress={(e) => dispatch({ type: 'todo_adding' })}>追加</Text>
     } else if (!todos.adding && todos.editing) {
       return <Text style={styles.headerRight}>完了</Text>
     }
-    return <Text style={styles.headerRight}>削除</Text>
+    return <Text style={styles.headerRight} onPress={deleteTodos}>削除</Text>
   }
 
   return (
