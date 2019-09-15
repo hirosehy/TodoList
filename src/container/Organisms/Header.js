@@ -1,65 +1,35 @@
-import React, { Component } from 'react'
+import React, { useContext, useMemo } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
-import { connect } from 'react-redux'
-import { setAdding, setEditing, setTodos } from '../../actions/index'
 
-class Header extends Component {
-  render () {
-    const { adding, editing, todos, onAdding, onEditing, onSetTodos } = this.props
+import { Store } from '../../store'
 
-    const changeAdding = () => {
-      this.props.submitAdding(!adding)
-      onAdding(!adding)
+export default function Header () {
+  const {
+    state,
+    dispatch
+  } = useContext(Store)
+
+  const todos = useMemo(() => state, [
+    state
+  ])
+
+  const ListOperation = () => {
+    if (todos.adding && !todos.editing) {
+      return <Text style={styles.headerRight} onPress={(e) => dispatch({ type: 'todo_adding' })}>追加</Text>
+    } else if (!todos.adding && todos.editing) {
+      return <Text style={styles.headerRight}>完了</Text>
     }
-
-    const changeEditing = () => {
-      onEditing(!editing)
-    }
-
-    const deleteTodos = () => {
-      onSetTodos(todos.filter(todo => !todo.done))
-    }
-
-    const ListOperation = () => {
-      if (adding && !editing) {
-        return <Text style={styles.headerRight} onPress={changeAdding}>追加</Text>
-      }
-      return <Text style={styles.headerRight} onPress={deleteTodos}>削除</Text>
-    }
-
-    return (
-      <View style={styles.header}>
-        <Text style={styles.headerLeft}>編集</Text>
-        <Text style={styles.headerTitle}>リスト</Text>
-        {ListOperation()}
-      </View>
-    )
+    return <Text style={styles.headerRight}>削除</Text>
   }
-}
 
-const mapStateToProps = state => {
-  return {
-    adding: state.todos.adding,
-    editing: state.todos.editing,
-    todos: state.todos.list
-  }
+  return (
+    <View style={styles.header}>
+      <Text style={styles.headerLeft}>編集</Text>
+      <Text style={styles.headerTitle}>リスト</Text>
+      <ListOperation />
+    </View>
+  )
 }
-
-const mapDispatchToProps = dispatch => {
-  return {
-    onAdding: adding => {
-      return dispatch(setAdding(adding))
-    },
-    onEditing: editing => {
-      return dispatch(setEditing(editing))
-    },
-    onSetTodos: todos => {
-      return dispatch(setTodos(todos))
-    }
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Header)
 
 const styles = StyleSheet.create({
   header: {

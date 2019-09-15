@@ -1,61 +1,40 @@
-import React, { Component } from 'react'
-import { View, StyleSheet } from 'react-native'
+import React, { useState, useContext } from 'react'
+import { View, StyleSheet, Text } from 'react-native'
 import AtomInputText from '../Atoms/AtomInputText'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import { CheckBox } from 'react-native-elements'
+import { Store } from '../../store'
 
-export default class Item extends Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      done: this.props.todo ? this.props.todo.done : undefined,
-      content: this.props.todo ? this.props.todo.content : '',
-      editing: false
-    }
+export default function Item (props) {
+  const [editing, setEditing] = useState(false)
+  const content = props.todo ? props.todo.content : ''
+  const [value, setValue] = useState(content)
+
+  const onAdding = () => {
+    console.log('dispatch')
   }
 
-  checkboxPress = () => {
-    this.props.checked(this.props.index)
-    this.setState(() => ({ done: !this.state.done }))
+  const onCheckbox = () => {
+    props.checked(props.index)
   }
 
-  handleTextChange = (text) => {
-    this.props.handleTextChange(text, this.props.adding)
+  const TodoIcon = () => {
+    return props.adding && !editing
+      ? <Icon name='plus' style={styles.icon} onPress={() => onAdding()} />
+      : <CheckBox onPress={() => onCheckbox()} checked={props.todo.done} />
   }
 
-  handleFocus = () => {
-    this.props.changeAdding()
-    this.setState(() => ({ editing: !this.state.editing }))
-  }
-
-  handleBlur = () => {
-    this.props.changeAdding()
-    this.setState(() => ({ editing: !this.state.editing }))
-  }
-
-  render () {
-    const changeAdding = () => {
-      console.log('emitする')
-    }
-
-    const TodoIcon = (adding) => {
-      return adding && !this.state.editing
-        ? <Icon name='plus' style={styles.icon} onPress={changeAdding} />
-        : <CheckBox onPress={this.checkboxPress} checked={this.state.done} />
-    }
-
-    return (
-      <View style={styles.container}>
-        {TodoIcon(this.props.adding)}
-        <AtomInputText
-          value={this.state.content}
-          handleFocus={this.handleFocus}
-          handleBlur={this.handleBlur}
-          handleTextChange={this.handleTextChange}
-        />
-      </View>
-    )
-  }
+  return (
+    <View style={styles.container}>
+      <TodoIcon />
+      <AtomInputText
+        value={value}
+        handleFocus={() => props.handleFocus()}
+        handleTextChange={(text) => setValue(text)}
+        handleBlur={() => props.handleBlur()}
+      />
+    </View>
+  )
 }
 
 const styles = StyleSheet.create({

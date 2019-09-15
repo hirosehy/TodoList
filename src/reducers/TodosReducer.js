@@ -14,9 +14,9 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case TODO_ADDING:
-      return { ...state, ...initialState, adding: action.adding }
+      return { ...state, ...initialState, adding: !state.adding }
     case TODO_EDITING:
-      return { ...state, ...initialState, editing: action.editing }
+      return { ...state, ...initialState, editing: !state.editing }
     case ADD_TODO:
       // ここにステートの変更とかの処理をかくぽいい
       return { ...state, ...initialState, todos: action.todos }

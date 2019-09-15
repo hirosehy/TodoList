@@ -1,52 +1,43 @@
-import React, { Component } from 'react'
+import React, { useContext, useMemo } from 'react'
 import { View } from 'react-native'
 import Item from '../../components/Molecules/Item'
-import { connect } from 'react-redux'
-import { setAdding, setTodos } from '../../actions/index'
 
-class List extends Component {
-  render () {
-    const { todos, adding, onAdding, onSetTodos } = this.props
-    const checked = (index) => {
-      todos.list[index].done = !todos.list[index].done
-      onSetTodos(todos.list)
-    }
+import { Store } from '../../store'
 
-    const changeAdding = () => {
-      onAdding(adding)
-    }
+export default function List () {
+  const { state, dispatch } = useContext(Store)
+  const todos = useMemo(() => state, [
+    state
+  ])
 
-    const handleTextChange = (text, adding) => {
-      this.props.addTodo(text, adding)
-    }
-
-    return (
-      <View>
-        {todos.list.map((data, index) => {
-          return <Item todo={data} adding={false} index={index} key={index} checked={checked} />
-        })}
-        <Item adding key='adding' changeAdding={changeAdding} handleTextChange={handleTextChange} />
-      </View>
-    )
+  const checked = (index) => {
+    todos.list[index].done = !todos.list[index].done
+    dispatch({ type: 'set_todos', todos: todos.list })
   }
-}
 
-const mapStateToProps = state => {
-  return {
-    todos: state.todos,
-    adding: state.todos.adding
+  const handleFocus = () => {
+    dispatch({ type: 'todo_editing' })
   }
-}
 
-const mapDispatchToProps = dispatch => {
-  return {
-    onAdding: adding => {
-      return dispatch(setAdding(!adding))
-    },
-    onSetTodos: todos => {
-      // return dispatch(setTodos(todos))
-    }
+  // まだcontentに反映されてない
+  const handleBlur = () => {
+    dispatch({ type: 'todo_editing' })
   }
-}
 
-export default connect(mapStateToProps, mapDispatchToProps)(List)
+  return (
+    <View>
+      {state.list.map((data, index) => (
+        <Item
+          todo={data}
+          checked={checked}
+          adding={false}
+          handleFocus={handleFocus}
+          handleBlur={handleBlur}
+          index={index}
+          key={index}
+        />
+      ))}
+      <Item adding />
+    </View>
+  )
+}

@@ -1,21 +1,15 @@
-import { createStore } from 'redux'
-import { persistStore, persistReducer } from 'redux-persist'
-import { AsyncStorage } from 'react-native'
-import rootReducer from '../reducers'
+import React, { useReducer, createContext } from 'react'
+import rootReducer from '../reducers/TodosReducer'
 
-const persistConfig = {
-  key: 'root',
-  storage: AsyncStorage
+const initialState = {
+  adding: false,
+  editing: false,
+  list: [{ 'content': 'test', done: true }, { 'content': 'test2', done: false }, { 'content': 'test3', done: false }]
 }
 
-const persistedReducer = persistReducer(persistConfig, rootReducer)
+export const Store = createContext()
 
-export default () => {
-  let store = createStore(persistedReducer)
-  let persistor = persistStore(store)
-
-  // テストが終わったら消す
-  persistor.purge()
-
-  return { store, persistor }
+export const Provider = ({ children }) => {
+  const [state, dispatch] = useReducer(rootReducer, initialState)
+  return <Store.Provider value={{ state, dispatch }}>{children}</Store.Provider>
 }
