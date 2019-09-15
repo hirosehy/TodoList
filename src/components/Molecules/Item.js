@@ -1,12 +1,11 @@
-import React, { useState, useContext } from 'react'
-import { View, StyleSheet, Text } from 'react-native'
+import React, { useState } from 'react'
+import { View, StyleSheet } from 'react-native'
 import AtomInputText from '../Atoms/AtomInputText'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import { CheckBox } from 'react-native-elements'
-import { Store } from '../../store'
 
 export default function Item (props) {
-  const [editing, setEditing] = useState(false)
+  const [editing] = useState(false)
   const content = props.todo ? props.todo.content : ''
   const [value, setValue] = useState(content)
 
