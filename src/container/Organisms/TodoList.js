@@ -24,6 +24,11 @@ export default function List () {
     dispatch({ type: 'todo_editing' })
   }
 
+  const onAdding = () => {
+    dispatch({ type: 'todo_adding' })
+    dispatch({ type: 'todo_editing' })
+  }
+
   return (
     <View>
       {state.list.map((data, index) => (
@@ -37,7 +42,7 @@ export default function List () {
           key={index}
         />
       ))}
-      <Item adding />
+      <Item adding handleFocus={handleFocus} handleBlur={handleBlur} onAdding={onAdding} />
     </View>
   )
 }

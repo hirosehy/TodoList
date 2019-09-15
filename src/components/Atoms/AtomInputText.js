@@ -2,8 +2,17 @@ import React, { Component } from 'react'
 import { TextInput, StyleSheet } from 'react-native'
 
 export default class AtomInputText extends Component {
+  constructor (props) {
+    super(props)
+    this.ref = React.createRef()
+  }
+
   state = {
     inputValue: this.props.value ? this.props.value : ''
+  }
+
+  focus = () => {
+    this.ref.current.focus()
   }
 
   _handleTextChange = inputValue => {
@@ -20,6 +29,7 @@ export default class AtomInputText extends Component {
         onFocus={this.props.handleFocus}
         onBlur={this.props.handleBlur}
         multiline
+        ref={this.ref}
       />
     )
   }

@@ -1,26 +1,29 @@
-import React, { useState } from 'react'
+import React, { useState, createRef } from 'react'
 import { View, StyleSheet } from 'react-native'
 import AtomInputText from '../Atoms/AtomInputText'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import { CheckBox } from 'react-native-elements'
 
 export default function Item (props) {
-  const [editing] = useState(false)
   const content = props.todo ? props.todo.content : ''
   const [value, setValue] = useState(content)
-
-  const onAdding = () => {
-    console.log('dispatch')
-  }
+  const [editing, setEditing] = useState(false)
+  const done = props.todo ? props.todo.done : false
+  const addRef = createRef()
 
   const onCheckbox = () => {
     props.checked(props.index)
   }
 
+  const onAdding = () => {
+    setEditing(true)
+    addRef.current.focus()
+  }
+
   const TodoIcon = () => {
     return props.adding && !editing
       ? <Icon name='plus' style={styles.icon} onPress={() => onAdding()} />
-      : <CheckBox onPress={() => onCheckbox()} checked={props.todo.done} />
+      : <CheckBox onPress={() => onCheckbox()} checked={done} />
   }
 
   return (
@@ -31,6 +34,7 @@ export default function Item (props) {
         handleFocus={() => props.handleFocus()}
         handleTextChange={(text) => setValue(text)}
         handleBlur={() => props.handleBlur()}
+        ref={addRef}
       />
     </View>
   )
