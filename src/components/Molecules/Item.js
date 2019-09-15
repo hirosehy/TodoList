@@ -26,13 +26,18 @@ export default function Item (props) {
       : <CheckBox onPress={() => onCheckbox()} checked={done} />
   }
 
+  const changeValue = (text) => {
+    setValue(text)
+    props.changeValue(text)
+  }
+
   return (
     <View style={styles.container}>
       <TodoIcon />
       <AtomInputText
         value={value}
         handleFocus={() => props.handleFocus()}
-        handleTextChange={(text) => setValue(text)}
+        handleTextChange={(text) => changeValue(text)}
         handleBlur={() => props.handleBlur()}
         ref={addRef}
       />

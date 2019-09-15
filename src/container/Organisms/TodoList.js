@@ -4,7 +4,7 @@ import Item from '../../components/Molecules/Item'
 
 import { Store } from '../../store'
 
-export default function List () {
+export default function List (props) {
   const { state, dispatch } = useContext(Store)
   const todos = useMemo(() => state, [
     state
@@ -32,6 +32,10 @@ export default function List () {
     dispatch({ type: 'todo_editing' })
   }
 
+  const changeValue = (text) => {
+    props.changeValue(text)
+  }
+
   return (
     <View>
       {state.list.map((data, index) => (
@@ -41,11 +45,18 @@ export default function List () {
           adding={false}
           handleFocus={handleFocus}
           handleBlur={handleBlur}
+          changeValue={changeValue}
           index={index}
           key={index}
         />
       ))}
-      <Item adding handleFocus={handleFocus} handleBlur={handleBlur} onAdding={onAdding} />
+      <Item
+        adding
+        handleFocus={handleFocus}
+        changeValue={changeValue}
+        handleBlur={handleBlur}
+        onAdding={onAdding}
+      />
     </View>
   )
 }
