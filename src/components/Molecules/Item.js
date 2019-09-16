@@ -29,7 +29,7 @@ export default function Item (props) {
 
   const changeValue = (text) => {
     setValue(text)
-    props.changeValue(text)
+    props.changeValue(text, props.index)
   }
 
   return (
@@ -38,7 +38,7 @@ export default function Item (props) {
       <AtomInputText
         value={value}
         handleFocus={() => props.handleFocus()}
-        handleTextChange={(text) => changeValue(text, props.index)}
+        handleTextChange={(text) => changeValue(text)}
         handleBlur={() => props.handleBlur()}
         ref={addRef}
       />
