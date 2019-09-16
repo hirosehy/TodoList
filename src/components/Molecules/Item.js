@@ -73,10 +73,6 @@ const styles = StyleSheet.create({
     marginRight: 20,
     marginBottom: 10
   },
-  iconContainer: {
-    flex: 1,
-    flexDirection: 'row'
-  },
   checkbox: {
     color: '#4873ff',
     marginRight: 16,

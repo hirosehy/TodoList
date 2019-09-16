@@ -50,14 +50,6 @@ export default function Header (props) {
 }
 
 const styles = StyleSheet.create({
-  header: {
-    alignItems: 'center',
-    backgroundColor: '#f8f8f8',
-    justifyContent: 'space-between',
-    flexDirection: 'row',
-    height: 70,
-    paddingTop: 34
-  },
   headerLeft: {
     marginLeft: 20,
     fontSize: 18,
