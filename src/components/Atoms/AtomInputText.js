@@ -38,9 +38,8 @@ export default class AtomInputText extends Component {
 const styles = StyleSheet.create({
   textInput: {
     borderColor: 'gray',
-    borderWidth: 1,
+    borderBottomWidth: 1,
     fontSize: 20,
-    backgroundColor: '#888888',
     flex: 1,
     alignItems: 'stretch'
   }
