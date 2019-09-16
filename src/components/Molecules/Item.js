@@ -1,7 +1,6 @@
 import React, { useState, createRef, useContext } from 'react'
-import { View, StyleSheet, CheckBox } from 'react-native'
+import { View, StyleSheet } from 'react-native'
 import AtomInputText from '../Atoms/AtomInputText'
-import Icon from 'react-native-vector-icons/FontAwesome'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 
 import { Store } from '../../store'

@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { View, Button, StyleSheet } from 'react-native'
+import { View, StyleSheet } from 'react-native'
 import AtomInputText from '../Atoms/AtomInputText'
 import Icon from 'react-native-vector-icons/FontAwesome'
 
@@ -14,7 +14,6 @@ export default function InputForm () {
   }
 
   const onButton = () => {
-    console.log('aaa')
     state.list = state.list.concat({
       content: text,
       done: false
