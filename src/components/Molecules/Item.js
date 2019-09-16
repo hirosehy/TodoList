@@ -1,4 +1,4 @@
-import React, { useState, createRef, useContext } from 'react'
+import React, { createRef, useContext } from 'react'
 import { View, StyleSheet } from 'react-native'
 import AtomInputText from '../Atoms/AtomInputText'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
@@ -6,8 +6,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import { Store } from '../../store'
 
 export default function Item (props) {
-  const content = props.todo ? props.todo.content : ''
-  const [value, setValue] = useState(content)
+  let value = props.todo.content
   const done = props.todo ? props.todo.done : false
   const addRef = createRef()
 
@@ -49,7 +48,7 @@ export default function Item (props) {
   }
 
   const changeValue = (text) => {
-    setValue(text)
+    value = text
     props.changeValue(text, props.index)
   }
 

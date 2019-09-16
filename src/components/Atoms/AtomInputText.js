@@ -7,10 +7,6 @@ export default class AtomInputText extends Component {
     this.ref = React.createRef()
   }
 
-  state = {
-    inputValue: this.props.value ? this.props.value : ''
-  }
-
   focus = () => {
     this.ref.current.focus()
   }
@@ -25,7 +21,7 @@ export default class AtomInputText extends Component {
       <TextInput
         style={styles.textInput}
         onChangeText={text => this._handleTextChange(text)}
-        value={this.state.inputValue}
+        value={this.props.value}
         onFocus={this.props.handleFocus}
         onBlur={this.props.handleBlur}
         multiline
