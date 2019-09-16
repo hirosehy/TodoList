@@ -38,7 +38,7 @@ export default function Item (props) {
       <AtomInputText
         value={value}
         handleFocus={() => props.handleFocus()}
-        handleTextChange={(text) => changeValue(text)}
+        handleTextChange={(text) => changeValue(text, props.index)}
         handleBlur={() => props.handleBlur()}
         ref={addRef}
       />

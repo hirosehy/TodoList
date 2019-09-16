@@ -9,7 +9,10 @@ import {
 const initialState = {
   adding: false,
   editing: false,
-  inputValue: '',
+  inputValue: {
+    content: '',
+    index: undefined
+  },
   list: [{ 'content': 'test', done: true }, { 'content': 'test2', done: false }, { 'content': 'test3', done: false }]
 }
 
@@ -25,7 +28,14 @@ export default (state = initialState, action) => {
     case SET_TODOS:
       return { ...state, ...initialState, list: action.todos }
     case INPUT_VALUE:
-      return { ...state, ...initialState, inputValue: action.inputValue }
+      return {
+        ...state,
+        ...initialState,
+        inputValue: {
+          content: action.inputValue.content,
+          index: action.inputValue.index
+        }
+      }
     default:
       return state
   }

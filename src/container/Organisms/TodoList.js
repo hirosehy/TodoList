@@ -31,8 +31,14 @@ export default function List (props) {
     dispatch({ type: 'todo_adding', adding: true })
   }
 
-  const changeValue = (text) => {
-    dispatch({ type: 'input_value', inputValue: text })
+  const changeValue = (text, index) => {
+    dispatch({
+      type: 'input_value',
+      inputValue: {
+        content: text,
+        index: index
+      }
+    })
   }
 
   return (
@@ -51,6 +57,7 @@ export default function List (props) {
       ))}
       <Item
         adding
+        index='add'
         handleFocus={handleFocus}
         changeValue={changeValue}
         handleBlur={handleBlur}

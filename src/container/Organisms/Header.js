@@ -21,7 +21,7 @@ export default function Header (props) {
   const onAdd = () => {
     dispatch({
       type: 'set_todos',
-      todos: todos.list.concat({ content: state.inputValue, done: false })
+      todos: todos.list.concat({ content: state.inputValue.content, done: false })
     })
   }
 
