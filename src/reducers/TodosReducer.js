@@ -6,31 +6,20 @@ import {
   INPUT_VALUE
 } from '../actions/types'
 
-const initialState = {
-  adding: false,
-  editing: false,
-  inputValue: {
-    content: '',
-    index: undefined
-  },
-  list: [{ 'content': 'test', done: true }, { 'content': 'test2', done: false }, { 'content': 'test3', done: false }]
-}
-
-export default (state = initialState, action) => {
+export default (state = {}, action) => {
   switch (action.type) {
     case TODO_ADDING:
-      return { ...state, ...initialState, adding: action.adding }
+      return { ...state, adding: action.adding }
     case TODO_EDITING:
-      return { ...state, ...initialState, editing: action.editing }
+      return { ...state, editing: action.editing }
     case ADD_TODO:
       // ここにステートの変更とかの処理をかくぽいい
-      return { ...state, ...initialState, todos: action.todos }
+      return { ...state, todos: action.todos }
     case SET_TODOS:
-      return { ...state, ...initialState, list: action.todos }
+      return { ...state, list: action.todos }
     case INPUT_VALUE:
       return {
         ...state,
-        ...initialState,
         inputValue: {
           content: action.inputValue.content,
           index: action.inputValue.index
