@@ -1,5 +1,6 @@
 import React, { useContext, useMemo } from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text } from 'react-native'
+import { Header as HeaderElement } from 'react-native-elements'
 
 import { Store } from '../../store'
 
@@ -34,15 +35,17 @@ export default function Header (props) {
   }
 
   const ListOperationRight = () => {
+    if (state.editing) return null
     return <Text onPress={deleteTodos} style={styles.headerRight}>削除</Text>
   }
 
   return (
-    <View style={styles.header}>
-      <ListOperationLeft />
-      <Text style={styles.headerTitle}>リスト</Text>
-      <ListOperationRight />
-    </View>
+    <HeaderElement
+      leftComponent={<ListOperationLeft />}
+      centerComponent={<Text style={styles.headerTitle}>リスト</Text>}
+      rightComponent={<ListOperationRight />}
+      backgroundColor='#f8f8f8'
+    />
   )
 }
 
