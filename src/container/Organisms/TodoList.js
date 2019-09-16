@@ -1,6 +1,7 @@
 import React, { useContext, useMemo } from 'react'
 import { View } from 'react-native'
 import Item from '../../components/Molecules/Item'
+import InputForm from '../../components/Molecules/InputForm'
 
 import { Store } from '../../store'
 
@@ -43,6 +44,7 @@ export default function List (props) {
 
   return (
     <View>
+      <InputForm />
       {state.list.map((data, index) => (
         <Item
           todo={data}
