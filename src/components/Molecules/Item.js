@@ -73,7 +73,6 @@ const styles = StyleSheet.create({
   },
   icon: {
     color: '#4873ff',
-    fontSize: 20,
     marginRight: 16,
     width: 26
   }

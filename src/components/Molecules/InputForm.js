@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react'
 import { View, Button, StyleSheet } from 'react-native'
 import AtomInputText from '../Atoms/AtomInputText'
+import Icon from 'react-native-vector-icons/FontAwesome'
 
 import { Store } from '../../store'
 
@@ -31,22 +32,25 @@ export default function InputForm () {
         style={styles.input}
         handleTextChange={handleTextChange}
       />
-      <Button
-        title='追加'
-        onPress={() => onButton()}
-      />
+      <Icon name='plus' style={styles.plus} onPress={() => onButton} size={20} />
     </View>
   )
 }
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 10,
+    marginTop: 15,
+    marginBottom: 10,
     flex: 1,
     flexDirection: 'row',
     marginLeft: 10
   },
   input: {
     paddingLeft: 10
+  },
+  plus: {
+    marginRight: 20,
+    marginLeft: 10,
+    color: '#4873ff'
   }
 })
