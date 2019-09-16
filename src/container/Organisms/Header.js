@@ -19,10 +19,18 @@ export default function Header (props) {
   }
 
   const onAdd = () => {
-    dispatch({
-      type: 'set_todos',
-      todos: todos.list.concat({ content: state.inputValue.content, done: false })
-    })
+    if (state.inputValue.index === 'add') {
+      dispatch({
+        type: 'set_todos',
+        todos: todos.list.concat({ content: state.inputValue.content, done: false })
+      })
+    } else {
+      todos.list[state.inputValue.index].content = state.inputValue.content
+      dispatch({
+        type: 'set_todos',
+        todos: todos.list
+      })
+    }
   }
 
   const ListOperation = () => {
