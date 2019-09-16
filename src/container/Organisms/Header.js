@@ -34,14 +34,12 @@ export default function Header (props) {
   }
 
   const ListOperation = () => {
-    return <Text style={styles.headerRight} onPress={() => onAdd()}>追加</Text>
-
     // if (todos.adding && !todos.editing) {
     //   return <Text style={styles.headerRight} onPress={() => onAdd()}>追加</Text>
     // } else if (!todos.adding && todos.editing) {
     //   return <Text style={styles.headerRight}>完了</Text>
     // }
-    // return <Text style={styles.headerRight} onPress={deleteTodos}>削除</Text>
+    return <Text style={styles.headerRight} onPress={deleteTodos}>削除</Text>
   }
 
   return (
