@@ -1,8 +1,8 @@
 import React, { useState, createRef, useContext } from 'react'
-import { View, StyleSheet } from 'react-native'
+import { View, StyleSheet, CheckBox } from 'react-native'
 import AtomInputText from '../Atoms/AtomInputText'
 import Icon from 'react-native-vector-icons/FontAwesome'
-import { CheckBox } from 'react-native-elements'
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 
 import { Store } from '../../store'
 
@@ -29,14 +29,23 @@ export default function Item (props) {
   const TodoIcon = () => {
     if (state.editing) {
       return (
-        <View style={styles.iconContainer}>
-          <Icon name='minus' size={20} onPress={() => selectDelete()} />
-          <CheckBox onPress={() => onCheckbox()} checked={done} />
-        </View>
+        <MaterialCommunityIcons style={styles.minus} name='minus' size={30} onPress={() => selectDelete()} />
       )
     }
     return (
-      <CheckBox onPress={() => onCheckbox()} checked={done} />
+      done
+        ? <MaterialCommunityIcons
+          style={styles.checkbox}
+          name='checkbox-marked-outline'
+          size={30}
+          onPress={() => onCheckbox()}
+        />
+        : <MaterialCommunityIcons
+          style={styles.checkbox}
+          name='checkbox-blank-outline'
+          size={30}
+          onPress={() => onCheckbox()}
+        />
     )
   }
 
@@ -62,7 +71,6 @@ export default function Item (props) {
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    flex: 1,
     marginTop: 10,
     marginRight: 20,
     marginBottom: 10
@@ -71,9 +79,14 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row'
   },
-  icon: {
+  checkbox: {
     color: '#4873ff',
     marginRight: 16,
-    width: 26
+    marginLeft: 10
+  },
+  minus: {
+    marginLeft: 10,
+    color: '#ff0000',
+    marginRight: 16
   }
 })
