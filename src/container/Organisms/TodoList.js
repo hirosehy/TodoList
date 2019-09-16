@@ -55,14 +55,6 @@ export default function List (props) {
           key={index}
         />
       ))}
-      <Item
-        adding
-        index='add'
-        handleFocus={handleFocus}
-        changeValue={changeValue}
-        handleBlur={handleBlur}
-        onAdding={onAdding}
-      />
     </View>
   )
 }
