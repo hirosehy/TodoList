@@ -1,14 +1,28 @@
-import React, { useContext, useMemo } from 'react'
+import React, { useContext, useState } from 'react'
 import { View, Button, StyleSheet } from 'react-native'
 import AtomInputText from '../Atoms/AtomInputText'
 
+import { Store } from '../../store'
+
 export default function InputForm () {
+  const { state, dispatch } = useContext(Store)
+  const [text, setText] = useState('')
+
   const handleTextChange = (text) => {
-    console.log(text)
+    setText(text)
   }
 
   const onButton = () => {
-    console.log('pressed')
+    state.list = state.list.concat({
+      content: text,
+      done: false
+    })
+    dispatch(
+      {
+        type: 'set_todos',
+        todos: state.list
+      }
+    )
   }
 
   return (
