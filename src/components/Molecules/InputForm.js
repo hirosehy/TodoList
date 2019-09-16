@@ -14,6 +14,7 @@ export default function InputForm () {
   }
 
   const onButton = () => {
+    console.log('aaa')
     state.list = state.list.concat({
       content: text,
       done: false
@@ -32,7 +33,7 @@ export default function InputForm () {
         style={styles.input}
         handleTextChange={handleTextChange}
       />
-      <Icon name='plus' style={styles.plus} onPress={() => onButton} size={20} />
+      <Icon name='plus' style={styles.plus} onPress={onButton} size={20} />
     </View>
   )
 }
