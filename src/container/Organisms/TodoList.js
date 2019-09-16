@@ -28,10 +28,6 @@ export default function List (props) {
     dispatch({ type: 'todo_editing' })
   }
 
-  const onAdding = () => {
-    dispatch({ type: 'todo_adding', adding: true })
-  }
-
   const changeValue = (text, index) => {
     state.list[index].content = text
     dispatch({
@@ -43,8 +39,8 @@ export default function List (props) {
   return (
     <View>
       <InputForm />
-      {state.list.map((data, index) => (
-        <Item
+      {state.list.map((data, index) => {
+        return (<Item
           todo={data}
           checked={checked}
           adding={false}
@@ -53,8 +49,8 @@ export default function List (props) {
           changeValue={changeValue}
           index={index}
           key={index}
-        />
-      ))}
+        />)
+      })}
     </View>
   )
 }

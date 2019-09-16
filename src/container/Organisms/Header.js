@@ -18,28 +18,17 @@ export default function Header (props) {
     dispatch({ type: 'set_todos', todos: todos.list })
   }
 
-  const onAdd = () => {
-    if (state.inputValue.index === 'add') {
-      dispatch({
-        type: 'set_todos',
-        todos: todos.list.concat({ content: state.inputValue.content, done: false })
-      })
-    } else {
-      todos.list[state.inputValue.index].content = state.inputValue.content
-      dispatch({
-        type: 'set_todos',
-        todos: todos.list
-      })
-    }
-  }
-
   const ListOperation = () => {
     return <Text style={styles.headerRight} onPress={deleteTodos}>削除</Text>
   }
 
+  const onEditing = () => {
+    dispatch({ type: 'todo_editing', editing: true })
+  }
+
   return (
     <View style={styles.header}>
-      <Text style={styles.headerLeft}>編集</Text>
+      <Text style={styles.headerLeft} onPress={() => onEditing()}>編集</Text>
       <Text style={styles.headerTitle}>リスト</Text>
       <ListOperation />
     </View>
