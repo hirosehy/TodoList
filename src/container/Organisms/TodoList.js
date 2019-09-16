@@ -33,12 +33,10 @@ export default function List (props) {
   }
 
   const changeValue = (text, index) => {
+    state.list[index].content = text
     dispatch({
-      type: 'input_value',
-      inputValue: {
-        content: text,
-        index: index
-      }
+      type: 'set_todos',
+      todos: state.list
     })
   }
 
