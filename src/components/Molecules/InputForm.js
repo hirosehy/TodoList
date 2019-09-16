@@ -28,6 +28,7 @@ export default function InputForm () {
   return (
     <View style={styles.container}>
       <AtomInputText
+        style={styles.input}
         handleTextChange={handleTextChange}
       />
       <Button
@@ -40,7 +41,12 @@ export default function InputForm () {
 
 const styles = StyleSheet.create({
   container: {
+    marginTop: 10,
     flex: 1,
-    flexDirection: 'row'
+    flexDirection: 'row',
+    marginLeft: 10
+  },
+  input: {
+    paddingLeft: 10
   }
 })
