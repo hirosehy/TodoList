@@ -57,9 +57,9 @@ export default function Item (props) {
       <TodoIcon />
       <AtomInputText
         value={value}
-        handleFocus={() => props.handleFocus()}
+        handleFocus={() => props.handleFocus ? props.handleFocus() : null}
         handleTextChange={(text) => changeValue(text)}
-        handleBlur={() => props.handleBlur()}
+        handleBlur={() => props.handleFocus ? props.handleBlur() : null}
         ref={addRef}
       />
     </View>

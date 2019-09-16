@@ -16,15 +16,6 @@ export default function List (props) {
     dispatch({ type: 'set_todos', todos: todos.list })
   }
 
-  const handleFocus = () => {
-    dispatch({ type: 'todo_editing' })
-  }
-
-  // まだcontentに反映されてない
-  const handleBlur = () => {
-    dispatch({ type: 'todo_editing' })
-  }
-
   const changeValue = (text, index) => {
     state.list[index].content = text
     dispatch({
@@ -41,8 +32,6 @@ export default function List (props) {
           todo={data}
           checked={checked}
           adding={false}
-          handleFocus={handleFocus}
-          handleBlur={handleBlur}
           changeValue={changeValue}
           index={index}
           key={index}

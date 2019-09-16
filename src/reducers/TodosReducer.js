@@ -1,5 +1,4 @@
 import {
-  TODO_ADDING,
   TODO_EDITING,
   ADD_TODO,
   SET_TODOS,
@@ -11,7 +10,6 @@ export default (state = {}, action) => {
     case TODO_EDITING:
       return { ...state, editing: action.editing }
     case ADD_TODO:
-      // ここにステートの変更とかの処理をかくぽいい
       return { ...state, todos: action.todos }
     case SET_TODOS:
       return { ...state, list: action.todos }
