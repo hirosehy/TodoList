@@ -65,8 +65,7 @@ const styles = StyleSheet.create({
     flex: 1,
     marginTop: 10,
     marginRight: 20,
-    marginBottom: 10,
-    marginLeft: 20
+    marginBottom: 10
   },
   iconContainer: {
     flex: 1,
@@ -74,11 +73,8 @@ const styles = StyleSheet.create({
   },
   icon: {
     color: '#4873ff',
-    fontSize: 26,
+    fontSize: 20,
     marginRight: 16,
-    width: 28
-  },
-  taskText: {
-    fontSize: 24
+    width: 26
   }
 })
