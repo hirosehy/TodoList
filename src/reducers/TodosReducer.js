@@ -8,8 +8,6 @@ import {
 
 export default (state = {}, action) => {
   switch (action.type) {
-    case TODO_ADDING:
-      return { ...state, adding: action.adding }
     case TODO_EDITING:
       return { ...state, editing: action.editing }
     case ADD_TODO:

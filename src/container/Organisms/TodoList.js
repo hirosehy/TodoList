@@ -22,9 +22,6 @@ export default function List (props) {
 
   // まだcontentに反映されてない
   const handleBlur = () => {
-    if (state.adding) {
-      dispatch({ type: 'todo_adding', adding: false })
-    }
     dispatch({ type: 'todo_editing' })
   }
 

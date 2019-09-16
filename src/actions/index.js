@@ -1,11 +1,4 @@
-import { TODO_ADDING, TODO_EDITING, ADD_TODO, SET_TODOS, INPUT_VALUE } from './types'
-
-export const setAdding = adding => {
-  return {
-    type: TODO_ADDING,
-    adding: adding
-  }
-}
+import { TODO_EDITING, ADD_TODO, SET_TODOS, INPUT_VALUE } from './types'
 
 export const setEditing = editing => {
   return {
