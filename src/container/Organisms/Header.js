@@ -18,15 +18,30 @@ export default function Header (props) {
     dispatch({ type: 'set_todos', todos: todos.list })
   }
 
-  const onEditing = () => {
+  const openEditing = () => {
     dispatch({ type: 'todo_editing', editing: true })
+  }
+
+  const closeEditing = () => {
+    dispatch({ type: 'todo_editing', editing: false })
+  }
+
+  const ListOperationLeft = () => {
+    if (state.editing) {
+      return <Text style={styles.headerLeft} onPress={() => closeEditing()}>完了</Text>
+    }
+    return <Text style={styles.headerLeft} onPress={() => openEditing()}>編集</Text>
+  }
+
+  const ListOperationRight = () => {
+    return <Text onPress={deleteTodos} style={styles.headerRight}>削除</Text>
   }
 
   return (
     <View style={styles.header}>
-      <Text style={styles.headerLeft} onPress={() => onEditing()}>編集</Text>
+      <ListOperationLeft />
       <Text style={styles.headerTitle}>リスト</Text>
-      <Text style={styles.headerRight} onPress={deleteTodos}>削除</Text>
+      <ListOperationRight />
     </View>
   )
 }
